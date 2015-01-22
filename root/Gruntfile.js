@@ -113,11 +113,19 @@ module.exports = function( grunt ) {
           ]
         }
       },
-      libs: {
+      pluginsJS: {
         files: {
           '<%= source %>js/jscript.js': [
             '<%= source %>js/jscript.js',
-            '<%= source %>js/src/libs/**/*.js',
+            '<%= source %>js/src/plugins/**/*.js',
+          ]
+        }
+      },
+      pluginsCSS: {
+        files: {
+          '<%= dest %>template/template_styles.css': [
+            '<%= dest %>template/template_styles.css',
+            '<%= source %>js/src/plugins/**/*.css'
           ]
         }
       },
@@ -131,11 +139,19 @@ module.exports = function( grunt ) {
           ]
         }
       },
-      prodLibs: {
+      prodPluginsJS: {
         files: {
-          '<%= temp %>js/jscript.js': [
-            '<%= temp %>js/jscript.js',
-            '<%= source %>js/src/libs/**/*.js',
+          '<%= temp %>template/jscript.js': [
+            '<%= temp %>template/jscript.js',
+            '<%= source %>js/src/plugins/**/*.js',
+          ]
+        }
+      },
+      prodPluginsCSS: {
+        files: {
+          '<%= temp %>template/template_styles.css': [
+            '<%= temp %>template/template_styles.css',
+            '<%= source %>js/src/plugins/**/*.css'
           ]
         }
       }
@@ -371,20 +387,21 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-contrib-clean' );
   grunt.loadNpmTasks( 'grunt-contrib-uglify' );
   
-  grunt.registerTask( 'css', [ 'stylus:template', 'stylus:components' ] );
-  grunt.registerTask( 'js', [ 'concat:js', 'jshint:dev', 'concat:libs', 'uglify:devTemplate', 'uglify:devComponents', 'clean:js' ] );
+  grunt.registerTask( 'css', [ 'stylus:template', 'stylus:components', 'concat:pluginsCSS' ] );
+  grunt.registerTask( 'js', [ 'concat:js', 'jshint:dev', 'concat:pluginsJS', 'uglify:devTemplate', 'uglify:devComponents', 'clean:js' ] );
   grunt.registerTask( 'html', [ 'copy:images', 'jade:dev' ] );
   grunt.registerTask( 'default', [ 'connect', 'css', 'js', 'html', 'watch' ] );
   
   grunt.registerTask( 'prod', [
     'stylus:prod',
+    'concat:prodPluginsCSS',
     'jade:prod',
     //js
     'concat:prod',
     'copy:prodComponents',
     'jshint:prod',
-    'concat:prodLibs',
     'uglify:prodTemplate',
+    'concat:prodPluginsJS',
     'uglify:prodComponents',
     //images
     'clean:images',
