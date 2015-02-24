@@ -164,6 +164,7 @@ module.exports = function( grunt ) {
           eqeqeq: true,
           eqnull: true,
           browser: true,
+          newcap: true,
           globals: {
             jQuery: true,
             console: true
@@ -182,6 +183,7 @@ module.exports = function( grunt ) {
           eqeqeq: true,
           eqnull: true,
           browser: true,
+          newcap: true,
           globals: {
             jQuery: true,
             console: true
