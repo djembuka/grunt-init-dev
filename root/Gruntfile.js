@@ -5,9 +5,9 @@ module.exports = function( grunt ) {
     source: 'source/',
     dest: 'dest/',
     temp: 'temp/',
-    prod: 'Z:/{%= domain %}/markup/',
+    prod: 'markup/',
     
-    jade: {
+    pug: {
       dev: {
         options: {
           pretty: true
@@ -17,9 +17,9 @@ module.exports = function( grunt ) {
             expand: true, 
             cwd: './<%= source%>',
             src: [
-              '**/*.jade',
-              '!layouts/**/*.jade',
-              '!modules/**/*.jade'
+              '**/*.pug',
+              '!layouts/**/*.pug',
+              '!modules/**/*.pug'
             ],
             dest: '<%= dest%>',
             ext: '.html',
@@ -37,9 +37,9 @@ module.exports = function( grunt ) {
             expand: true, 
             cwd: './<%= source%>',
             src: [
-              '**/*.jade',
-              '!layouts/**/*.jade',
-              '!modules/**/*.jade'
+              '**/*.pug',
+              '!layouts/**/*.pug',
+              '!modules/**/*.pug'
             ],
             dest: '<%= temp%>',
             ext: '.html',
@@ -105,7 +105,7 @@ module.exports = function( grunt ) {
     concat: {
       js: {
         files: {
-          '<%= source %>js/jscript.js': [
+          '<%= source %>js/script.js': [
             '<%= source %>js/src/top.js',
             '<%= source %>js/main.js',
             '<%= source %>modules/**/*.js',
@@ -115,8 +115,8 @@ module.exports = function( grunt ) {
       },
       pluginsJS: {
         files: {
-          '<%= source %>js/jscript.js': [
-            '<%= source %>js/jscript.js',
+          '<%= source %>js/script.js': [
+            '<%= source %>js/script.js',
             '<%= source %>js/src/plugins/**/*.js',
           ]
         }
@@ -131,7 +131,7 @@ module.exports = function( grunt ) {
       },
       prod: {
         files: {
-          '<%= temp %>template/jscript.js': [
+          '<%= temp %>template/script.js': [
             '<%= source %>js/src/top.js',
             '<%= source %>js/main.js',
             '<%= source %>modules/**/*.js',
@@ -141,8 +141,8 @@ module.exports = function( grunt ) {
       },
       prodPluginsJS: {
         files: {
-          '<%= temp %>template/jscript.js': [
-            '<%= temp %>template/jscript.js',
+          '<%= temp %>template/script.js': [
+            '<%= temp %>template/script.js',
             '<%= source %>js/src/plugins/**/*.js',
           ]
         }
@@ -172,7 +172,7 @@ module.exports = function( grunt ) {
         },
         files: {
           src: [
-            '<%= source %>js/jscript.js',
+            '<%= source %>js/script.js',
             '<%= source %>components/**/*.js'
           ]
         }
@@ -191,7 +191,7 @@ module.exports = function( grunt ) {
         },
         files: {
           src: [
-            '<%= temp %>template/jscript.js',
+            '<%= temp %>template/script.js',
             '<%= temp %>components/**/*.js'
           ]
         }
@@ -208,7 +208,7 @@ module.exports = function( grunt ) {
         },
         files: [
           {
-            '<%= dest%>template/jscript.js': '<%= source %>js/jscript.js'
+            '<%= dest%>template/script.js': '<%= source %>js/script.js'
           }
         ]
       },
@@ -232,19 +232,19 @@ module.exports = function( grunt ) {
       prodTemplate: {
         options: {
           mangle: true,
-          compress: true,
+          compress: {},
           preserveComments: 'some'
         },
         files: [
           {
-            '<%= temp %>template/jscript.js': '<%= temp %>template/jscript.js'
+            '<%= temp %>template/script.js': '<%= temp %>template/script.js'
           }
         ]
       },
       prodComponents: {
         options: {
           mangle: true,
-          compress: true
+          compress: {}
         },
         files: [
           {
@@ -261,7 +261,7 @@ module.exports = function( grunt ) {
     
     clean: {
       js: {
-        src: [ '<%= source %>js/jscript.js' ]
+        src: [ '<%= source %>js/script.js' ]
       },
       images: {
         src: [ '<%= dest %>template/images/' ]
@@ -343,8 +343,8 @@ module.exports = function( grunt ) {
       },
       
       html: {
-        files: '**/*.jade',
-        tasks: 'jade:dev'
+        files: '**/*.pug',
+        tasks: 'pug:dev'
       },
       
       css: {
@@ -355,7 +355,7 @@ module.exports = function( grunt ) {
       js: {
         files: [
           '<%= source %>**/*.js',
-          '!<%= source %>js/jscript.js'
+          '!<%= source %>js/script.js'
         ],
         tasks: [ 'js' ]
       },
@@ -382,7 +382,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-contrib-connect' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
   grunt.loadNpmTasks( 'grunt-contrib-stylus' );
-  grunt.loadNpmTasks( 'grunt-contrib-jade' );
+  grunt.loadNpmTasks( 'grunt-contrib-pug' );
   grunt.loadNpmTasks( 'grunt-contrib-jshint' );
   grunt.loadNpmTasks( 'grunt-contrib-copy' );
   grunt.loadNpmTasks( 'grunt-contrib-concat' );
@@ -391,13 +391,13 @@ module.exports = function( grunt ) {
   
   grunt.registerTask( 'css', [ 'stylus:template', 'stylus:components', 'concat:pluginsCSS' ] );
   grunt.registerTask( 'js', [ 'concat:js', 'jshint:dev', 'concat:pluginsJS', 'uglify:devTemplate', 'uglify:devComponents', 'clean:js' ] );
-  grunt.registerTask( 'html', [ 'copy:images', 'jade:dev' ] );
+  grunt.registerTask( 'html', [ 'copy:images', 'pug:dev' ] );
   grunt.registerTask( 'default', [ 'connect', 'css', 'js', 'html', 'watch' ] );
   
   grunt.registerTask( 'prod', [
     'stylus:prod',
     'concat:prodPluginsCSS',
-    'jade:prod',
+    'pug:prod',
     //js
     'concat:prod',
     'copy:prodComponents',
