@@ -1,5 +1,5 @@
 /*
- * grunt-init-www
+ * grunt-init dev
  * For Twin px use only
  *
  * Copyright (c) 2014 Tatiana

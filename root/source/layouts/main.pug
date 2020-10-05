@@ -1,18 +1,37 @@
-﻿doctype html
+﻿block vars
+  - var page = 'main'
+  - var authorized = 'true'
+
+doctype html
 html
   head
     block title
       title {%= domain %}
       
     include includes/meta
-    include includes/styles
-    include includes/scripts
     
   body
+  
+    include ../components/bitrix-panel/template
+    
     include includes/header
     
-    section.container
-      block content
+    block content
+      .container
         h1 {%= domain %}
     
     include includes/footer
+    
+    //- include page's styles and scripts
+    include includes/fonts
+    include includes/styles
+    include includes/scripts
+    
+    //- include styles and scripts for all page's components
+    block components-array
+    
+      if componentsArray
+        - each componentName in componentsArray
+          link( rel="stylesheet", href="/components/#{componentName}/style.css" )
+          script( src="/components/#{componentName}/script.js" )
+

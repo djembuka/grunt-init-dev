@@ -58,13 +58,39 @@ module.exports = function( grunt ) {
         }
       },
       template: {
-        files: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= source%>styl/placeholders/',
+            src: [ '*.styl' ],
+            dest: '<%= dest%>template/placeholders/',
+            extDot: 'first',
+            ext: '.css'
+          },
+          {
           '<%= dest%>template/template_styles.css':
             [
               '<%= source%>styl/template_styles.styl',
               '<%= source%>modules/**/*.styl'
             ]
-        }
+          }
+        ]
+      },
+      issue: {
+        files: [
+          {
+            '<%= dest%>template/placeholders/search.css':
+            '<%= source%>styl/placeholders/search.styl'
+          },
+          {
+            expand: true,
+            cwd: '<%= source %>components/search/',
+            src: [ '**/*.styl' ],
+            dest: '<%= dest %>components/search/',
+            extDot: 'first',
+            ext: '.css'
+          }
+        ]
       },
       components: {
         files: [
@@ -88,6 +114,14 @@ module.exports = function( grunt ) {
             cwd: '<%= source%>components/',
             src: [ '**/*.styl' ],
             dest: '<%= temp %>components/',
+            extDot: 'first',
+            ext: '.css'
+          },
+          {
+            expand: true,
+            cwd: '<%= source%>styl/placeholders/',
+            src: [ '*.styl' ],
+            dest: '<%= temp %>template/placeholders/',
             extDot: 'first',
             ext: '.css'
           },
@@ -345,6 +379,16 @@ module.exports = function( grunt ) {
       html: {
         files: '**/*.pug',
         tasks: 'pug:dev'
+      },
+      
+      cssGeneral: {
+        files: [
+          '<%= source %>**/*.styl',
+          //change component name
+          '!<%= source %>components/header/**/*.styl',
+          '!<%= source %>styl/placeholders/**/*.styl'
+        ],
+        tasks: 'css'
       },
       
       css: {

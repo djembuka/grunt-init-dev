@@ -1,4 +1,4 @@
-extends ./layouts/main
+extends ../../layouts/main
 
 block title
   title Pages list | {%= domain %}
@@ -8,6 +8,6 @@ block content
   .container
     h1 {%= domain %}
     
-    ul
-      li
-        a( href="/pages/main/" ) Main page
+  .container
+  
+    include ../components/component/template
