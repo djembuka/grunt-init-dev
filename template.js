@@ -23,6 +23,12 @@ exports.template = function(grunt, init, done) {
       message: 'Enter project domain',
       default: 'bejet',
       warning: ''
+    },
+    {
+      name: 'og:title',
+      message: 'Enter project title',
+      default: 'Twin px project',
+      warning: ''
     }
   ], function(err, props) {
 

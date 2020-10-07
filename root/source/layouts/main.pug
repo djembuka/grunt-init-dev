@@ -31,7 +31,7 @@ html
     block components-array
     
       if componentsArray
-        - each componentName in componentsArray
+        each componentName in componentsArray
           link( rel="stylesheet", href="/components/#{componentName}/style.css" )
           script( src="/components/#{componentName}/script.js" )
 
