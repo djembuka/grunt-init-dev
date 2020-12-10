@@ -1,2 +1,310 @@
 body
   background #fff
+  font-family $open-sans
+  font-size 16px
+  color #3b3b3b
+  
+a
+  transition( opacity .5s ease )
+
+  &,
+  &:hover,
+  &:focus,
+  &:active
+    color $link-color
+    text-decoration none
+    
+  &:hover
+    opacity .7
+  
+p, dl, ol, ul
+  margin-bottom 1.25rem
+
+dl, ol, ul
+  padding-left 3rem
+  margin-top 1rem
+  font-family $roboto
+  font-weight $normal
+  
+li
+  margin-bottom 1rem
+
+  > ol,
+  > ul
+    margin-top 1rem
+    
+blockquote
+  margin 0 0 1.25rem 3rem
+  border-left 2px solid $primary-color
+  padding-left 20px
+  color #000
+
+.b-lead
+  font-size $24px
+  margin 1.25rem 0
+  
+  @media( max-width 575px )
+    font-size 1.2rem
+    
+hr
+  margin-top 1rem
+  margin-bottom 1rem
+  border-top 1px solid transparent !important
+  
+  &.hr--xs
+    margin-top .25rem
+    margin-bottom .25rem
+  
+  &.hr--sm
+    margin-top .5rem
+    margin-bottom .5rem
+  
+  &.hr--md
+    margin-top .75rem
+    margin-bottom .75rem
+  
+  &.hr--lg
+    margin-top 1.5rem
+    margin-bottom 1.5rem
+  
+  &.hr--xl
+    margin-top 2rem
+    margin-bottom 2rem
+    
+  &.hr--line
+    border-top 1px solid #eee !important
+    
+//Headers
+    
+h1,.h1,
+h2,.h2,
+h3,.h3,
+h4,.h4,
+h5,.h5,
+h6,.h6,
+p,
+blockquote,
+ul,
+ol
+  max-width 770px
+  
+  &:first-child
+    margin-top 0
+    
+h1,.h1,
+h2,.h2,
+h3,.h3,
+h4,.h4,
+h5,.h5,
+h6,.h6
+  font-family $roboto
+  font-weight $bold
+
+h1,.h1
+  font-size $38px
+  line-height 1.18//44
+  margin 0 0 1rem
+  overflow visible
+  height auto
+  letter-spacing -1px
+
+  &.ph-block--animated
+    color #3b3b3b
+    
+    &:after
+      background-color transparent
+      width auto
+      opacity 0
+      pointer-events none
+    
+  @media( max-width 767px )
+    font-size 1.4rem
+    line-height 1.6
+
+h2,.h2
+  font-size $32px
+  line-height 1.25//40
+  margin 2.5rem 0 1rem
+  overflow visible
+  height auto
+  letter-spacing -1px
+  
+  @media( max-width 767px )
+    font-size 1.2rem
+    line-height 1.4
+
+h3,.h3
+  font-size $24px
+  line-height 1.5//36
+  margin 2.5rem 0 1rem
+  overflow visible
+  height auto
+  letter-spacing -1px
+  
+  @media( max-width 767px )
+    font-size 1.2rem
+    line-height 1.2
+
+h4,.h4
+  font-size $18px
+  line-height 21px
+  margin 1.7rem 0 0.5rem
+  
+h5, .h5
+  margin 1.7rem 0 0.5rem
+  font-size $14px
+  
+h6, .h6
+  margin 1.7rem 0 0.5rem
+  font-size $12px
+  
+//Buttons
+
+.btn
+  font-family $roboto
+  font-weight 200
+  font-size $12px
+  line-height 48px
+  height 48px
+  border-radius 7px
+  padding-top 0
+  padding-bottom 0
+  min-width 158px
+  transition( all .5s ease )
+    
+  &:hover
+    opacity .7
+  
+  &-primary
+    
+    &,
+    &:hover,
+    &.focus,
+    &:focus,
+    &.disabled,
+    &:disabled
+      background-color $primary-color
+      border-color $primary-color
+      
+    &.focus,
+    &:focus
+      box-shadow none
+
+    &:not(:disabled):not(.disabled)
+
+      &.active,
+      &:active
+        background-color $primary-color
+        border-color $primary-color
+
+        &:focus
+          box-shadow none
+      
+  &-secondary
+    
+    &,
+    &:hover,
+    &.focus,
+    &:focus,
+    &.disabled,
+    &:disabled
+      background-color $secondary-color
+      border-color $secondary-color
+      
+    &.focus,
+    &:focus
+      box-shadow none
+
+    &:not(:disabled):not(.disabled)
+
+      &.active,
+      &:active
+        background-color $secondary-color
+        border-color $secondary-color
+
+        &:focus
+          box-shadow none
+  
+  &-light
+    
+    &,
+    &:hover,
+    &.focus,
+    &:focus,
+    &.disabled,
+    &:disabled
+      color #3b3b3b
+      background-color #f0f0f0
+      border-color #f0f0f0
+      
+    &.focus,
+    &:focus
+      box-shadow none
+
+    &:not(:disabled):not(.disabled)
+
+      &.active,
+      &:active
+        color $primary-color
+        background-color #f0f0f0
+        border-color #f0f0f0
+
+        &:focus
+          box-shadow none
+    
+  &-lg
+    line-height 60px
+    height 60px
+    font-size $16px
+    min-width 250px
+    
+  &-sm
+    line-height 30px
+    height 30px
+    min-width 0
+    padding 0 17px
+    border-radius 3px
+    font-weight $normal
+    
+  &-tag
+    font-size: $12px
+    font-weight normal
+    height 28px
+    line-height 28px
+    min-width auto
+    padding 0 8px
+    background-color #fafafa
+    border-radius 3px
+
+    &,
+    &:hover,
+    &:focus,
+    &:active
+      color #9b9b9b
+      
+//Tables
+      
+.table,
+.table-responsive
+
+  thead th
+    border-bottom 1px solid $line-color
+    font-family $roboto
+    font-weight 600
+    font-size 0.8rem
+    line-height 1rem
+
+  td,
+  th
+    padding 1.25rem 1.5rem
+    border-top-color $line-color
+  
+//Typography
+  
+.text-muted
+  color #9b9b9b !important
+    
+small,
+.small
+  font-size $12px
+  line-height 14px

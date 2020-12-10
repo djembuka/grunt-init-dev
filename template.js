@@ -25,9 +25,15 @@ exports.template = function(grunt, init, done) {
       warning: ''
     },
     {
-      name: 'og:title',
+      name: 'title',
       message: 'Enter project title',
       default: 'Twin px project',
+      warning: ''
+    },
+    {
+      name: 'description',
+      message: 'Enter project description',
+      default: 'Description of the project',
       warning: ''
     }
   ], function(err, props) {
